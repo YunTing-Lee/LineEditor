@@ -1,9 +1,9 @@
 
-package pkgfinal;
-import java.lang.*;
-import java.util.* ;
-import CYICE.* ;
+package lineeditor;
 
+import java.util.* ;
+
+/*
 class G{
 
   static ICEInputStream sIn = null;
@@ -19,7 +19,7 @@ class G{
   } // CYPrint()
 
 } // class G
-
+*/
 
 class Buffer {
   protected Vector<String> mpArticle = new Vector<String>() ;
@@ -28,13 +28,19 @@ class Buffer {
   
   
   void Add()throws Throwable {
-    String line = G.sIn.ReadInputLine();
+    
+    // String line = G.sIn.ReadInputLine();
+    Scanner scanner = new Scanner(System.in);
+    String line = scanner.nextLine();
     while ( ! line.equals(".") ) {
+      
       mpArticle.add(line);
-      line = G.sIn.ReadInputLine();
+      // line = G.sIn.ReadInputLine();
+      line = scanner.nextLine();
     } // while
     mCurrentLine = mpArticle.size();
     System.out.println(mCurrentLine ) ;
+     
   } // Add
   
   void Add( int editLine ) throws Throwable {
@@ -43,11 +49,14 @@ class Buffer {
       System.out.println( "Error : Line number out of range ! Please try again.");
     else {
       mCurrentLine = editLine ;
-      String line = G.sIn.ReadInputLine();
+      Scanner scanner = new Scanner(System.in);
+      String line = scanner.nextLine();
+      // String line = G.sIn.ReadInputLine();
       while ( ! line.equals(".")) {
         mpArticle.add(mCurrentLine, line);
         mCurrentLine++ ;
-        line = G.sIn.ReadInputLine();
+        line = scanner.nextLine();
+        // line = G.sIn.ReadInputLine();
       } // while
     } // else
     System.out.println(mCurrentLine ) ;
@@ -55,7 +64,9 @@ class Buffer {
   
   void Insert() throws Throwable {
     int time = 0 ;
-    String line = G.sIn.ReadInputLine() ;
+    Scanner scanner = new Scanner(System.in);
+    String line = scanner.nextLine();
+    // String line = G.sIn.ReadInputLine() ;
     while ( ! line.equals(".") ) {
       if ( mpArticle.size() == 0 ) {
         mpArticle.add(line);
@@ -70,7 +81,8 @@ class Buffer {
         } // else
       } // else
       time++ ;
-      line = G.sIn.ReadInputLine() ;
+      line = scanner.nextLine();
+      // line = G.sIn.ReadInputLine() ;
     } // while
     System.out.println(mCurrentLine ) ;
   } // Insert()
@@ -81,7 +93,9 @@ class Buffer {
       System.out.println( "Error : Line number out of range ! Please try again.");
     else {
       mCurrentLine = editLine ;
-      String line = G.sIn.ReadInputLine();
+      //String line = G.sIn.ReadInputLine();
+      Scanner scanner = new Scanner(System.in);
+      String line = scanner.nextLine();
       while ( ! line.equals(".")) {
         if ( time == 0 )
           mpArticle.insertElementAt(line, mCurrentLine - 1 );
@@ -90,7 +104,7 @@ class Buffer {
           mCurrentLine++ ;
         } // else
         time++ ;
-        line = G.sIn.ReadInputLine();
+        line = scanner.nextLine(); //line = G.sIn.ReadInputLine();
       } // while
     } // else
     System.out.println(mCurrentLine ) ;
@@ -102,7 +116,9 @@ class Buffer {
     if ( mpArticle.size() == 0 )
       System.out.println( "Error : There is no data! Please try again.") ;
     else {
-      String line = G.sIn.ReadInputLine();
+      // String line = G.sIn.ReadInputLine();
+      Scanner scanner = new Scanner(System.in);
+      String line = scanner.nextLine();
       while ( ! line.equals(".")) {
         if ( time == 0 )
           mpArticle.set(mCurrentLine - 1 , line ) ;
@@ -111,7 +127,7 @@ class Buffer {
           mCurrentLine++ ;
         } // else
          time++ ;
-         line = G.sIn.ReadInputLine();
+         line = scanner.nextLine(); //line = G.sIn.ReadInputLine();
        } // while
     } // else
     System.out.println(mCurrentLine ) ;
@@ -125,7 +141,9 @@ class Buffer {
       System.out.println( "Error : Line number out of range ! Please try again.");
     else {
      //  mCurrentLine = editLine ;
-      String line = G.sIn.ReadInputLine();
+      //String line = G.sIn.ReadInputLine();
+      Scanner scanner = new Scanner(System.in);
+      String line = scanner.nextLine();
       while ( ! line.equals(".")) {
         /*
         if ( line.trim().isEmpty() )
@@ -140,7 +158,7 @@ class Buffer {
         } // else
         
         time++ ;
-        line = G.sIn.ReadInputLine();
+        line = scanner.nextLine(); //line = G.sIn.ReadInputLine();
       } // while
     } // else
     System.out.println(mCurrentLine) ;
@@ -263,16 +281,17 @@ class Editor extends Buffer {
 } // class Editor
 
 
-public class Final {
+public class LineEditor {
 
   static char sWay ;
   static int sEditLine = 0 ;
   static int sCase = 0 ;
   
   static void Enter() throws Throwable {
-    char enter = G.sIn.ReadChar();
+    Scanner scanner = new Scanner(System.in);
+    char enter = (char) System.in.read();; // char enter = G.sIn.ReadChar();
     while( enter != '\n' )
-      enter = G.sIn.ReadChar();
+      enter = (char) System.in.read();; // enter = G.sIn.ReadChar();
   } // Enter()
   
   static boolean IsWhiteSpace( char ch ) throws Throwable {
@@ -284,14 +303,19 @@ public class Final {
   } // IsWhiteSpace
  
     static void SkipSpaceAndTab() throws Throwable {
-    while ( sWay == ' '  || sWay == '\t' )     
-      sWay = G.sIn.ReadChar();
+    while ( sWay == ' '  || sWay == '\t' ) {
+        Scanner scanner = new Scanner(System.in);
+        sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
+    } 
+      
   } // SkipSpaceAndTab()
   
   
   static void SkipAllWhiteSpace() throws Throwable {
-    while ( sWay == ' ' || sWay == '\n' || sWay == '\t' ) 
-      sWay = G.sIn.ReadChar();
+    while ( sWay == ' ' || sWay == '\n' || sWay == '\t' ) {
+        Scanner scanner = new Scanner(System.in);
+        sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
+    }
   } // SkipAllWhiteSpace()
 
    static boolean IsDigit( char ch ) throws Throwable {
@@ -306,7 +330,8 @@ public class Final {
      while ( IsDigit( sWay ) ) {
        int num = sWay - '0' ;
        sEditLine = sEditLine * 10 + num ;
-       sWay = G.sIn.ReadChar();
+       Scanner scanner = new Scanner(System.in);
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
        if ( sWay == ' ' || sWay == '\t' )
          SkipSpaceAndTab() ;    
      } // while
@@ -346,9 +371,11 @@ public class Final {
    
    
    static void FirstIsMoney() throws Throwable {
-     sWay = G.sIn.ReadChar();
+     Scanner scanner = new Scanner(System.in);
+     sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
+     
      while ( sWay ==  ' ' || sWay == '\t' ) 
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
 
      
      if ( sWay ==  '\n' )   // 只有$
@@ -382,9 +409,10 @@ public class Final {
    
    
    static void FirstIsDot() throws Throwable {
-     sWay = G.sIn.ReadChar();
+     Scanner scanner = new Scanner(System.in);
+     sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
      while ( sWay == ' ' || sWay == '\t' )
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
      if ( sWay == '\n' )  // 只有.
        Editor.sCurrentBuffer.PrintAndChange(Editor.sCurrentBuffer.mCurrentLine);
      else if ( sWay == 'a' ) {
@@ -428,9 +456,11 @@ public class Final {
    
    
    static void FirstIsPercent() throws Throwable {
-     sWay = G.sIn.ReadChar();
+     Scanner scanner = new Scanner(System.in);
+     sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
+     
      while ( sWay == ' ' || sWay == '\t' || sWay == '\n' )
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
      if ( sWay == 'p' ) {
        Enter();
        Editor.sCurrentBuffer.PrintAll();
@@ -450,34 +480,35 @@ public class Final {
    } // IsaORiOrdOrp()
    
    static void ChangeLineOrBuffer() throws Throwable {   // c
-     sWay = G.sIn.ReadChar();
+     Scanner scanner = new Scanner(System.in);
+     sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
      while ( sWay == ' ' || sWay == '\t' ) 
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
        
      if ( sWay ==  '\n' ) // c
        Editor.sCurrentBuffer.Change();
      else if ( sWay == 'b' ){ // cb
        
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
        if ( sWay != ' ' && sWay != '\t' && sWay != '\n' ) {           // cbggg
          Enter();
          System.out.println( " Unprocessable command! Please try again.") ;
        } // if
        else {   // cb name
          while ( sWay == ' ' || sWay == '\t' || sWay == '\n' )
-            sWay = G.sIn.ReadChar();
+            sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
          char name[] = new char[100] ;
          int j = 0 ;
          while ( sWay != '\n' ) {
            name[j] = sWay ;
            j++ ;
-           sWay = G.sIn.ReadChar();
+           sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
             while ( sWay == ' ' || sWay == '\t'  )
-              sWay = G.sIn.ReadChar();
+              sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
          } // while
          
          String newName =  String.valueOf(name).trim() ;
-         System.out.println( newName + "66" ) ;
+         // System.out.println( newName + "66" ) ;
          Editor.ChangeBuffer(newName);
        } // else
 
@@ -490,9 +521,10 @@ public class Final {
    
    
    static void  List() throws Throwable {
-     sWay = G.sIn.ReadChar();
+     Scanner scanner = new Scanner(System.in);
+     sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
      while ( sWay == ' ' || sWay == '\t' || sWay == '\n' ) 
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
 
      if ( sWay == 'b' ) {
        Enter();
@@ -507,16 +539,17 @@ public class Final {
    
    static void CurrentBuffer() throws Throwable {          // b
 
-     sWay = G.sIn.ReadChar();
+     Scanner scanner = new Scanner(System.in);
+     sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
      if ( sWay != ' ' && sWay != '\t' ) {   // b 把目前的buffer名字印出來
        if ( sWay != '\n' )
          Enter();
        System.out.println( Editor.sCurrentBuffer.mName + " " +  Editor.sCurrentBuffer.mpArticle.size() );
      } // if
      else {  
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
        while ( sWay == ' ' || sWay == '\t' )
-         sWay = G.sIn.ReadChar();
+         sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
        if ( sWay == '\n' )
           System.out.println( Editor.sCurrentBuffer.mName + " " +  Editor.sCurrentBuffer.mpArticle.size() );
        else {
@@ -525,9 +558,9 @@ public class Final {
          while ( sWay != '\n' ) {
            name[j] = sWay ;
            j++;
-           sWay = G.sIn.ReadChar();
+           sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
            while ( sWay == ' ' || sWay == '\t' )
-             sWay = G.sIn.ReadChar();
+             sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
          } // while
            String spaceName = String.valueOf(name) ;
            String newName = String.valueOf(name).trim();
@@ -539,15 +572,16 @@ public class Final {
    } // CurrentBuffer()
    
    static void ProduceNewBuffer() throws Throwable {   // n 開頭
-     sWay = G.sIn.ReadChar();
+     Scanner scanner = new Scanner(System.in);
+     sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
      while( sWay == ' ' || sWay == '\t' || sWay == '\n' ) 
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
 
       
      if ( sWay != 'b' )
        System.out.println( " Unprocessable command! Please try again." );
      else {  // nb 或 nb name
-       sWay = G.sIn.ReadChar();
+       sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
        if ( sWay != ' ' && sWay != '\t' ) {    // nb\n nbbbbbbbbbbb
          if ( sWay!= '\n' )
            Enter();
@@ -555,7 +589,7 @@ public class Final {
        } // if
        else {
          while( sWay == ' ' || sWay == '\t'  ) 
-            sWay = G.sIn.ReadChar();
+            sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
          if ( sWay == '\n' ) // nb 
            Editor.NewBuffer();
          else {    // nb name
@@ -566,9 +600,9 @@ public class Final {
            while ( sWay != '\n' ) {              // 名字中間允許有空格
              name[j] = sWay ;
              j++ ;
-             sWay = G.sIn.ReadChar();
+             sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
              while ( sWay == ' ' || sWay == '\t' )
-               sWay = G.sIn.ReadChar();
+               sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
            } // while
            
            
@@ -583,7 +617,7 @@ public class Final {
              */
            String spaceName = String.valueOf(name) ;
            String newName = String.valueOf(name).trim();
-           System.out.println( newName + "00" ) ;
+           // System.out.println( newName + "00" ) ;
            Editor.NewBuffer(newName); 
          } // else
        } // else
@@ -594,11 +628,13 @@ public class Final {
    
   public static void main(String[] args) throws Throwable{
   
-    G.Init();
+    //G.Init();
     Editor.Start();
-    G.CYPrint("Welcome to CYICE Line Editor..." + "\n" ) ;
+    System.out.println("Welcome to CYICE Line Editor...");
+    //G.CYPrint("Welcome to CYICE Line Editor..." + "\n" ) ;
     System.out.print("> ") ;
-    sWay = G.sIn.ReadChar();
+    Scanner scanner = new Scanner(System.in);
+    sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
     if ( IsWhiteSpace( sWay) ) 
       SkipAllWhiteSpace();   // 做完之後sWay現在已經不是white space 了
     
@@ -627,11 +663,11 @@ public class Final {
       
       System.out.print("> ") ;
       // i = 0 ;
-      sWay = G.sIn.ReadChar();
+      sWay = (char) System.in.read() ; // sWay = G.sIn.ReadChar();
       if ( IsWhiteSpace( sWay ) ) 
         SkipAllWhiteSpace();   // 做完之後sWay[i]現在已經不是white space 了
     } // while
-    G.CYPrint("Thahks for using CYICE Line Editor !"  ) ; 
-    
+    //G.CYPrint("Thahks for using CYICE Line Editor !"  ) ; 
+    System.out.println("Thahks for using CYICE Line Editor !");
   }  // main()
-} // Final()
+} // LineEditor()
