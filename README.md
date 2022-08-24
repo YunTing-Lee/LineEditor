@@ -45,3 +45,5 @@
 	
 	
 # 程式驗證結果
+![image](https://github.com/YunTing-Lee/LineEditor/blob/main/Picture/LineEditorOutput1.PNG)
+![image](https://github.com/YunTing-Lee/LineEditor/blob/main/Picture/LineEditorOutput2.PNG)
