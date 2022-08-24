@@ -29,4 +29,16 @@
 	- p         :  把「目前這一行」印出來
 	- %p        :  把正在編輯的文章的全部內容印出來
 
+- b(buffer)
+	- b         : 把目前的「工作buffer」的名字列出來
+	- b name    : 把目前的「工作buffer」的名字改為'name'
+	- lb        : 把所有的buffer的名字依照buffer產生的順序列出來 (list buffers)
+	- cb name   : 切換到'name'這個buffer(以'name'這個buffer作為目前的「工作buffer」) (change buffer)
+	- nb name   : 產生一個新的、名叫'name'的buffer，並以它作為目前的「工作buffer」 (new buffer)
+	- nb        : 產生一個新的、由系統取名的buffer，並以它作為目前的「工作buffer」 (new buffer)
 
+- other
+	- 23        :  列印第23行(含line number與內容)，同時把第23行設定為「目前這一行」
+	- $         :  列印最後一行(含line number與內容)，並把最後一行設定為「目前這一行」
+	- .         :  列印「目前這一行」(含line number與內容)
+	- q         : 離開系統(quit)
