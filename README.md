@@ -1,5 +1,11 @@
 # LineEditor
 
+## 開發平台
+Windows 10
+
+## 開發環境
+Apache NetBeans IDE 12.4
+
 ## 說明
 模擬行編輯器，可以用來做最基本的文本編輯，可使用的命令功能有a(add lines), i(insert lines), c(change lines), d(delete a line), p(print lines), nb(create a new buffer), cb(change buffer), q(quit)
 - a(add lines)
